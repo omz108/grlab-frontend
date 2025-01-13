@@ -1,6 +1,6 @@
 import { useState } from "react";
-// import api from "../api/axiosInstance";
-import axios from "axios";
+import api from "../api/axiosInstance";
+// import axios from "axios";
 import { ReportCard } from "./reportCard";
 
 export function Home() {
@@ -42,7 +42,7 @@ export function Home() {
                         <button className="px-3 py-1 bg-blue-400 text-white rounded-lg hover:bg-blue-500"
                         onClick={ async () => {
                             try {
-                                const res = await axios.post('http://localhost:3000/otp/generate',
+                                const res = await api.post('/otp/generate',
                                     { mobileNumber }, { headers: {
                                         "Content-Type": "application/json"
                                     }}
@@ -72,7 +72,7 @@ export function Home() {
                         <button className="px-3 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500"
                         onClick={ async () => {
                             try {
-                                const res = await axios.post('http://localhost:3000/reportDetails',
+                                const res = await api.post('/reportDetails',
                                     { 
                                         reportNumber,
                                         mobileNumber,
