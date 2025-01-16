@@ -17,7 +17,7 @@ export function Home() {
                 <h1>REPORT VERIFICATION SYSTEM</h1>
             </div>
             <p className="py-4 font-bold">Please enter details and click Show for result.</p>
-            <div className="max-w-md w-full bg-blue-50 p-8 rounded-lg shadow-lg">
+            <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
                 <div className="space-y-4">
                     <div>
                         <label htmlFor="reportId">Report Number</label>

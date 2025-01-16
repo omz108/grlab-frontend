@@ -16,7 +16,7 @@ export function ReportCard({ report }: { report: any }) {
     ];
   
     return (
-      <div className="my-12 w-full max-w-4xl bg-blue-50 p-6 rounded-lg shadow-md border flex">
+      <div className="my-12 w-full max-w-4xl bg-white p-6 rounded-lg shadow-md border flex">
         {/* Image Section */}
         <div className="flex-shrink-0 w-40 h-40 border border-gray-300 rounded-lg overflow-hidden bg-gray-100 mr-6">
           {report.imageUrl ? (

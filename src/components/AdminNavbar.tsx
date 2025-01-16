@@ -1,4 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import api from "../api/axiosInstance";
+
+const logout = async () => {
+    
+    
+}
 
 export const AdminNavbar = () => {
 
@@ -7,7 +13,7 @@ export const AdminNavbar = () => {
     const menuOptions = [
         { label: 'AddReport', href: '/admin/addReport'},
         { label: 'EditReport', href: '/admin/editReport'},
-        { label: 'Logout', href:'' }
+        // { label: 'Logout', href: logout }
     ]
 
   return (
@@ -28,6 +34,18 @@ export const AdminNavbar = () => {
                     onClick={() => navigate(option.href)}
                     >{option.label}</button>
                 ))}
+                <button
+                onClick={ async () => {
+                    try {
+                        const res = await api.post('/admin/logout');
+                        console.log(res.data.message);
+                        alert(res.data.message);
+                        navigate('/admin/login')
+                    } catch(err) {
+                        console.log(err);
+                    }
+                }}
+                >Logout</button>
             </div>
         </div>
       </div>
