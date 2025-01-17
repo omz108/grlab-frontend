@@ -1,11 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import api from "../api/axiosInstance";
 
-const logout = async () => {
-    
-    
-}
-
 export const AdminNavbar = () => {
 
     const navigate = useNavigate();
@@ -13,7 +8,7 @@ export const AdminNavbar = () => {
     const menuOptions = [
         { label: 'AddReport', href: '/admin/addReport'},
         { label: 'EditReport', href: '/admin/editReport'},
-        // { label: 'Logout', href: logout }
+        { label: 'View', href: '/admin/view' }
     ]
 
   return (
@@ -42,7 +37,8 @@ export const AdminNavbar = () => {
                         alert(res.data.message);
                         navigate('/admin/login')
                     } catch(err) {
-                        console.log(err);
+                        alert('You must login first');
+                        navigate('/admin/login')
                     }
                 }}
                 >Logout</button>

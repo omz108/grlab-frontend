@@ -11,6 +11,7 @@ import { AdminLayout } from './components/AdminLayout';
 import { AddReport } from './components/AddReport';
 import { EditReport } from './components/EditReport';
 import { useLocation } from 'react-router-dom';
+import { View } from './components/View';
 
 
 function App() {
@@ -43,6 +44,7 @@ function Main() {
               <Route path='login' element={<AdminLogin />}></Route>
               <Route path='addReport' element={<AddReport />}></Route>
               <Route path='editReport' element={<EditReport />}></Route>
+              <Route path='view' element={<View />}></Route>
             </Route>
           </Routes>
         </div>
