@@ -26,7 +26,8 @@ export function EditReport() {
   const handleEditSubmit = async () => {
     try {
       const response = await api.put(`/admin/report/${reportNumber}`, editData);
-      setFetchedReport(response.data);
+      alert(response.data.message);
+      setFetchedReport(response.data.updatedReport);
       setIsEditing(false);
     } catch (error: any) {
       if (error.response && error.response.data.error) {
@@ -91,10 +92,12 @@ export function EditReport() {
               </div>
             </div>
           ) : (
-            <div>
+            <div className="max-w-2xl">
               <h2 className="text-2xl font-bold mb-4">Edit Report</h2>
               <div className="grid grid-cols-2 gap-4">
-                {Object.keys(editData).map((key) => (
+                {Object.keys(editData)
+                .filter((key) => key !== "id")
+                .map((key) => (
                   <div key={key}>
                     <label className="block font-medium">{key}</label>
                     <input
@@ -104,7 +107,7 @@ export function EditReport() {
                       onChange={(e) =>
                         setEditData({ ...editData, [key]: e.target.value })
                       }
-                      className="w-full p-2 border rounded"
+                      className="w-60 p-2 border rounded"
                     />
                   </div>
                 ))}

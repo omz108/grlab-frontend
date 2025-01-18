@@ -28,6 +28,10 @@ export function AddReport() {
   };
 
   const handleSubmit = async () => {
+    if (!reportData.reportNumber) {
+      alert("Report Number is required!");
+      return;
+    }
     try {
       const response = await api.post("/admin/addRecord", reportData, {
         headers: { 'Content-Type': 'application/json'}
@@ -61,8 +65,8 @@ export function AddReport() {
   return (
     <div className="p-6">
       {!submittedReport ? (
-        <div className="">
-        <div className="max-w-xl">
+        <div className="ml-20">
+        <div className="max-w-2xl">
           <h2 className="text-2xl font-bold mb-4">Add New Report</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2">
             {Object.keys(reportData).map((key) => (

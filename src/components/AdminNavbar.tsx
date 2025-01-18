@@ -16,7 +16,9 @@ export const AdminNavbar = () => {
       <div>
         <div className="flex justify-between">
             <div>
-                <button className="text-xl font-bold">grlab</button>
+                <button className="text-xl font-bold"
+                onClick={() => navigate('/')}
+                >grlab</button>
             </div>
             <div>
                 <h1 className="text-red-300 text-3xl font-bold">Admin</h1>

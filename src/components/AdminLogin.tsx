@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import api from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
 
@@ -9,6 +9,22 @@ export function AdminLogin() {
     const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const checkLoginStatus = async () => {
+            try {
+                const res = await api.get('/admin/checkLogin');
+                if (res.status === 200) {
+                    // alert(res.data.message);
+                    navigate('/admin/addReport');
+                }
+            } catch(error) {
+                // 
+            }
+            
+        }
+        checkLoginStatus();
+    }, []);
 
     return <div className="flex items-center justify-center">
     <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg mt-20">
