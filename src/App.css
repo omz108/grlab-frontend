@@ -1,3 +1,24 @@
+@media print {
+  /* Hide everything else except for the report */
+  body * {
+    visibility: hidden;
+  }
+
+  .printable-report, .printable-report * {
+    visibility: visible;
+  }
+
+  /* Center the printable content */
+  .printable-report {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+  }
+}
+
 /* #root {
   max-width: 1280px;
   margin: 0 auto;

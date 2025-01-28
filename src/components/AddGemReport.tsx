@@ -4,7 +4,7 @@ import { ReportCard } from "./reportCard";
 
 export function AddGemReport() {
   const [reportData, setReportData] = useState({
-    reportType: "",
+    // reportType: "",
     reportNumber: "",
     conclusions: "",
     colour: "",
@@ -60,7 +60,7 @@ export function AddGemReport() {
 
       // Reset form
       setReportData({
-        reportType: "",
+        // reportType: "",
         reportNumber: "",
         conclusions: "",
         colour: "",
