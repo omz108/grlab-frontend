@@ -1,6 +1,5 @@
-export function ReportCard({ report }: { report: any }) {
+export function GemReportCard({ report }: { report: any }) {
     const fields = [
-      { label: "Report Type", value: report.reportType },
       { label: "Report Number", value: report.reportNumber },
       { label: "Conclusions", value: report.conclusions },
       { label: "Colour", value: report.colour },
@@ -25,7 +24,9 @@ export function ReportCard({ report }: { report: any }) {
             {fields.map(({ label, value }) => (
               <div key={label} className="flex">
                 <span className="w-48 font-medium text-gray-700">{label}:</span>
-                <span className="text-gray-900">{value || "N/A"}</span>
+                <span className={`text-gray-900 ${
+                    label === "Report Number" ? "font-bold" : ""
+                }`}>{value || "N/A"}</span>
               </div>
             ))}
           </div>

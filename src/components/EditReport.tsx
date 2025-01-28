@@ -1,10 +1,17 @@
 import { useState } from "react";
 import api from "../api/axiosInstance";
-import { ReportCard } from "./reportCard";
+import { GemReportCard } from "./GemReportCard";
+import { RudrakshaReportCard } from "./RudrakshaReportCard";
+
+type Report = {
+  reportNumber: string;
+  [key: string]: any;
+};
+
 
 export function EditReport() {
   const [reportNumber, setReportNumber] = useState("");
-  const [fetchedReport, setFetchedReport] = useState(null);
+  const [fetchedReport, setFetchedReport] = useState<Report | null>(null);
   const [isEditing, setIsEditing] = useState(false);
 
   const [editData, setEditData] = useState<any>({});
@@ -75,7 +82,15 @@ export function EditReport() {
         <div>
           {!isEditing ? (
             <div>
-              <ReportCard report={fetchedReport} />
+              {fetchedReport.reportNumber.startsWith("G") ? (
+                <GemReportCard report={fetchedReport} />
+              ) : fetchedReport.reportNumber.startsWith("R") ? (
+                <RudrakshaReportCard report={fetchedReport} />
+              ) : (
+                <div className="text-red-500">
+                  Invalid report type. Please check the report number.
+                </div>
+              )}
               <div className="flex gap-4 mt-4">
                 <button
                   onClick={() => setIsEditing(true)}
@@ -96,7 +111,7 @@ export function EditReport() {
               <h2 className="text-2xl font-bold mb-4">Edit Report</h2>
               <div className="grid grid-cols-2 gap-4">
                 {Object.keys(editData)
-                .filter((key) => key !== "id")
+                .filter((key) => key !== "id" && key !== "reportNumber" && key !== "imageUrl")
                 .map((key) => (
                   <div key={key}>
                     <label className="block font-medium">{key}</label>

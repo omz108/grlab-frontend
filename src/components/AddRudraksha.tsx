@@ -1,20 +1,20 @@
 import { useState } from "react";
 import api from "../api/axiosInstance";
-import { GemReportCard } from "./GemReportCard";
+import { RudrakshaReportCard } from "./RudrakshaReportCard";
 
-export function AddGemReport() {
+export function AddRudraksha() {
   const [reportData, setReportData] = useState({
-    conclusions: "",
-    colour: "",
-    dimensions: "",
-    shapeCut: "",
-    species: "",
     weight: "",
-    refractiveIndex: "",
-    specificGravity: "",
-    opticCharacter: "",
-    magnification: "",
-    remarks: "",
+    colour: "",
+    mounted: "",
+    shape: "",
+    dimension: "",
+    naturalFaces: "",
+    artificialFaces: "",
+    testCameOut: "",
+    xRayResult: "",
+    origin: "",
+    comment: "",
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [submittedReport, setSubmittedReport] = useState(null);
@@ -51,24 +51,24 @@ export function AddGemReport() {
     }
 
     try {
-      const response = await api.post("/admin/addGemRecord", formData, {
+      const response = await api.post("/admin/addRudraksha", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       setSubmittedReport(response.data);
 
       // Reset form
       setReportData({
-        conclusions: "",
-        colour: "",
-        dimensions: "",
-        shapeCut: "",
-        species: "",
         weight: "",
-        refractiveIndex: "",
-        specificGravity: "",
-        opticCharacter: "",
-        magnification: "",
-        remarks: "",
+        colour: "",
+        mounted: "",
+        shape: "",
+        dimension: "",
+        naturalFaces: "",
+        artificialFaces: "",
+        testCameOut: "",
+        xRayResult: "",
+        origin: "",
+        comment: "",
       });
       setImageFile(null);
     } catch (error: any) {
@@ -91,7 +91,7 @@ export function AddGemReport() {
       {!submittedReport ? (
         <div className="ml-20">
           <div className="max-w-2xl">
-            <h2 className="text-2xl font-bold mb-4 text-red-400">Add Gem Report</h2>
+            <h2 className="text-2xl font-bold mb-4 text-red-400">Add Rudraksha Report</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-y-2">
               {Object.keys(reportData).map((key) => (
                 <div key={key} className="flex flex-col">
@@ -129,7 +129,7 @@ export function AddGemReport() {
       ) : (
         <div>
           <h2 className="text-2xl font-bold mb-4 text-red-400">Report Added Successfully</h2>
-          <GemReportCard report={submittedReport} />
+          <RudrakshaReportCard report={submittedReport} />
           <button
             onClick={() => setSubmittedReport(null)}
             className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition"

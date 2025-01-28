@@ -1,19 +1,40 @@
 import { useState } from "react";
 import api from "../api/axiosInstance";
-import { ReportCard } from "./reportCard";
+import { GemReportCard } from "./GemReportCard";
+import { RudrakshaReportCard } from "./RudrakshaReportCard";
 
 export function View() {
   const [report, setReport] = useState<any | null>(null);
-  const [allReports, setAllReports] = useState<any | null>(null);
+  const [allGems, setAllGems] = useState<any | null>(null);
+  const [allRudraksha, setAllRudraksha] = useState<any | null>(null);
   const [reportNumber, setReportNumber] = useState("");
 
-  // Function to handle fetching and displaying all reports
-  const showAllReports = async () => {
+  // Function to handle fetching and displaying all reports - Gems
+  const showAllGems = async () => {
     try {
-      const res = await api.get("admin/fetchAllReports");
+      const res = await api.get("admin/fetchAllGems");
       if (res && res.data) {
-        setAllReports(res.data);
+        setAllGems(res.data);
         setReport(null); // Reset the report when showing all reports
+        setAllRudraksha(null);
+      }
+    } catch (error:any) {
+        if (error.response && error.response.data.error) {
+            alert(error.response.data.error);
+          } else {
+            alert("Error while fetching all data.");
+          }
+    }
+  };
+
+  // Function to handle fetching and displaying all reports - Rudraksha
+  const showAllRudraksha = async () => {
+    try {
+      const res = await api.get("admin/fetchAllRudraksha");
+      if (res && res.data) {
+        setAllRudraksha(res.data);
+        setReport(null); // Reset the report when showing all reports
+        setAllGems(null);
       }
     } catch (error:any) {
         if (error.response && error.response.data.error) {
@@ -41,7 +62,8 @@ export function View() {
               const res = await api.get(`/admin/reportDetail/${reportNumber}`);
               if (res) {
                 setReport(res.data); // Show selected report
-                setAllReports(null); // Hide all reports if viewing a single report
+                setAllGems(null); // Hide all reports if viewing a single report
+                setAllRudraksha(null);
               }
             } catch (error:any) {
                 if (error.response && error.response.data.error) {
@@ -56,28 +78,42 @@ export function View() {
         </button>
       </div>
 
-      {/* Show all reports button */}
+      {/* Show all Gem reports button */}
       <div className="m-5 flex">
         <h2 className="px-3 py-2 font-medium">
-          If you want to view all reports then click this red button
+          Show All Gem Reports
         </h2>
         <button
           className="px-3 py-2 bg-red-500 border rounded-lg text-white"
-          onClick={showAllReports}
+          onClick={showAllGems}
         >
-          Show All Reports
+          View
+        </button>
+      </div>
+
+      {/* Show all Rudraksha reports button */}
+      <div className="m-5 flex">
+        <h2 className="px-3 py-2 font-medium">
+          Show All Rudraksha Reports
+        </h2>
+        <button
+          className="px-3 py-2 bg-red-500 border rounded-lg text-white"
+          onClick={showAllRudraksha}
+        >
+          View
         </button>
       </div>
 
       {/* Displaying selected report or list of all reports */}
       <div>
         {/* Display single report */}
-        {report && <ReportCard report={report} />}
+        {report?.reportNumber?.startsWith('G') && <GemReportCard report={report} />}
+        {report?.reportNumber?.startsWith('R') && <RudrakshaReportCard report={report} />}
 
-        {/* Display list of all reports */}
-        {allReports && (
+        {/* Display list of all Gems */}
+        {allGems && (
           <div className="space-y-4">
-            {allReports.map((report: { reportNumber: string }) => (
+            {allGems.map((report: { reportNumber: string }) => (
               <div key={report.reportNumber}>
                 <button
                   className="py-2 px-4 bg-gray-200 border rounded-md"
@@ -88,7 +124,39 @@ export function View() {
                       );
                       if (res) {
                         setReport(res.data);
-                        setAllReports(null); // Reset the list of reports
+                        setAllGems(null); // Reset the list of reports
+                      }
+                    } catch (error: any) {
+                        if (error.response && error.response.data.error) {
+                            alert(error.response.data.error);
+                          } else {
+                            alert("Error fetching data.");
+                          }
+                    }
+                  }}
+                >
+                  {report.reportNumber}
+                </button>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Display list of all Rudraksha */}
+        {allRudraksha && (
+          <div className="space-y-4">
+            {allRudraksha.map((report: { reportNumber: string }) => (
+              <div key={report.reportNumber}>
+                <button
+                  className="py-2 px-4 bg-gray-200 border rounded-md"
+                  onClick={async () => {
+                    try {
+                      const res = await api.get(
+                        `/admin/reportDetail/${report.reportNumber}`
+                      );
+                      if (res) {
+                        setReport(res.data);
+                        setAllRudraksha(null); // Reset the list of reports
                       }
                     } catch (error: any) {
                         if (error.response && error.response.data.error) {

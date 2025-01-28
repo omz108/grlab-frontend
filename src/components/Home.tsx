@@ -1,7 +1,8 @@
 import { useState } from "react";
 import api from "../api/axiosInstance";
 // import axios from "axios";
-import { ReportCard } from "./reportCard";
+import { GemReportCard } from "./GemReportCard";
+import { RudrakshaReportCard } from "./RudrakshaReportCard";
 
 export function Home() {
 
@@ -101,7 +102,8 @@ export function Home() {
                 </div>
             </div> 
             <div className="my-5">
-                {report && <ReportCard report={report} />}
+                {report?.reportNumber?.startsWith('G') && <GemReportCard report={report} />}
+                {report?.reportNumber?.startsWith('R') && <RudrakshaReportCard report={report} />}
             </div>   
         </div>
     </>
