@@ -1,5 +1,5 @@
 import { CiInstagram } from "react-icons/ci";
-import { FaFacebookF } from "react-icons/fa";
+import { FaFacebookF, FaLinkedin } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 
 export function Footer() {
@@ -15,6 +15,9 @@ export function Footer() {
             </a>
             <a href="">
                 <CiInstagram className="w-6 h-6" />
+            </a>
+            <a href="">
+                <FaLinkedin className="w-6 h-6" />
             </a>
         </div>
         <div className="container mx-auto text-center mt-4">
