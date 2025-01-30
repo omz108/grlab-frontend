@@ -12,6 +12,7 @@ import { AddReport } from './components/AddReport';
 import { EditReport } from './components/EditReport';
 import { useLocation } from 'react-router-dom';
 import { View } from './components/View';
+import { UploadExcel } from './components/UploadExcel';
 // import { AddGemReport } from './components/AddGemReport';
 
 
@@ -44,7 +45,7 @@ function Main() {
             <Route path='/admin' element={<AdminLayout />}>
               <Route path='login' element={<AdminLogin />}></Route>
               <Route path='addReport' element={<AddReport />}></Route>
-              {/* <Route path='addGemReport' element={<AddGemReport />}></Route> */}
+              <Route path='uploadExcel' element={<UploadExcel />}></Route>
               <Route path='editReport' element={<EditReport />}></Route>
               <Route path='view' element={<View />}></Route>
             </Route>

@@ -8,6 +8,7 @@ export const AdminNavbar = () => {
     const menuOptions = [
         { label: 'AddReport', href: '/admin/addReport'},
         { label: 'EditReport', href: '/admin/editReport'},
+        { label: 'UploadExcel', href: '/admin/uploadExcel'},
         { label: 'View', href: '/admin/view' }
     ]
 
