@@ -8,6 +8,7 @@ export function View() {
   const [allGems, setAllGems] = useState<any | null>(null);
   const [allRudraksha, setAllRudraksha] = useState<any | null>(null);
   const [reportNumber, setReportNumber] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
 
   // Function to handle fetching and displaying all reports - Gems
   const showAllGems = async () => {
@@ -42,6 +43,20 @@ export function View() {
           } else {
             alert("Error while fetching all data.");
           }
+    }
+  };
+  
+  const handleDelete = async () => {
+    try {
+      await api.delete(`/admin/report/${report.reportNumber}`);
+      alert("Report deleted successfully");
+      setReport(null);
+    } catch (error: any) {
+      if (error.response && error.response.data.error) {
+        alert(error.response.data.error);
+      } else {
+        alert("Error deleting report.");
+      }
     }
   };
 
@@ -105,11 +120,28 @@ export function View() {
       </div>
 
       {/* Displaying selected report or list of all reports */}
-      <div>
+      {!isEditing? (<div>
         {/* Display single report */}
+        <div className="flex justify-center">
         {report?.reportNumber?.startsWith('G') && <GemReportCard report={report} />}
         {report?.reportNumber?.startsWith('R') && <RudrakshaReportCard report={report} />}
-
+        </div>
+        {
+          report && <div className="flex justify-center gap-4 -mt-20">
+          <button
+            onClick={() => setIsEditing(true)}
+            className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600"
+          >
+            Edit
+          </button>
+          <button
+            onClick={handleDelete}
+            className="bg-red-500 text-white py-2 px-4 rounded hover:bg-red-600"
+          >
+            Delete
+          </button>
+        </div>
+        }
         {/* Display list of all Gems */}
         {allGems && (
           <div className="space-y-4">
@@ -173,7 +205,9 @@ export function View() {
             ))}
           </div>
         )}
-      </div>
+      </div>) : (
+        <div></div>
+      ) }
     </div>
   );
 }

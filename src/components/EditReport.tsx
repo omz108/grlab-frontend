@@ -13,7 +13,6 @@ export function EditReport() {
   const [reportNumber, setReportNumber] = useState("");
   const [fetchedReport, setFetchedReport] = useState<Report | null>(null);
   const [isEditing, setIsEditing] = useState(false);
-
   const [editData, setEditData] = useState<any>({});
 
   const handleFetchReport = async () => {
