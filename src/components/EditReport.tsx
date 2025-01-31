@@ -106,7 +106,8 @@ export function EditReport() {
               </div>
             </div>
           ) : (
-            <div className="max-w-2xl">
+            <div className="flex justify-center">
+            <div className="w-full max-w-2xl bg-white p-10">
               <h2 className="text-2xl font-bold mb-4">Edit Report</h2>
               <div className="grid grid-cols-2 gap-4">
                 {Object.keys(editData)
@@ -132,6 +133,7 @@ export function EditReport() {
               >
                 Submit Changes
               </button>
+            </div>
             </div>
           )}
         </div>

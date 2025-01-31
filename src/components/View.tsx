@@ -18,6 +18,7 @@ export function View() {
         setAllGems(res.data);
         setReport(null); // Reset the report when showing all reports
         setAllRudraksha(null);
+        setIsEditing(false);
       }
     } catch (error:any) {
         if (error.response && error.response.data.error) {
@@ -36,6 +37,7 @@ export function View() {
         setAllRudraksha(res.data);
         setReport(null); // Reset the report when showing all reports
         setAllGems(null);
+        setIsEditing(false);
       }
     } catch (error:any) {
         if (error.response && error.response.data.error) {
@@ -71,7 +73,7 @@ export function View() {
           onChange={async (e) => setReportNumber(e.target.value)}
         />
         <button
-          className="px-3 py-2 bg-blue-500 border rounded-lg text-white"
+          className="px-3 py-2 bg-blue-500 border rounded-lg text-white hover:bg-blue-600"
           onClick={async () => {
             try {
               const res = await api.get(`/admin/reportDetail/${reportNumber}`);
@@ -79,6 +81,7 @@ export function View() {
                 setReport(res.data); // Show selected report
                 setAllGems(null); // Hide all reports if viewing a single report
                 setAllRudraksha(null);
+                setIsEditing(false);
               }
             } catch (error:any) {
                 if (error.response && error.response.data.error) {
@@ -99,7 +102,7 @@ export function View() {
           Show All Gem Reports
         </h2>
         <button
-          className="px-3 py-2 bg-red-500 border rounded-lg text-white"
+          className="px-3 py-2 bg-blue-500 border rounded-lg text-white hover:bg-blue-600"
           onClick={showAllGems}
         >
           View
@@ -112,7 +115,7 @@ export function View() {
           Show All Rudraksha Reports
         </h2>
         <button
-          className="px-3 py-2 bg-red-500 border rounded-lg text-white"
+          className="px-3 py-2 bg-blue-500 border rounded-lg text-white hover:bg-blue-600"
           onClick={showAllRudraksha}
         >
           View
@@ -206,7 +209,29 @@ export function View() {
           </div>
         )}
       </div>) : (
-        <div></div>
+        <div className="flex justify-center">
+          <div className="w-full max-w-3xl bg-white p-10 pl-20">
+            <h2 className="text-2xl font-bold mb-4 text-red-400">Edit Report</h2>
+            <div className="grid grid-cols-2 gap-4">
+              {Object.keys(report)
+              .filter((key) => key !== 'id')
+              .map((key) => (
+                <div key={key}>
+                  <label htmlFor={key} className="block font-medium">{key}</label>
+                  <input 
+                  type="text"
+                  name={key}
+                  id={key}
+                  value={report[key]}
+                  className="w-60 p-2 border rounded"
+                  onChange={(e) => setReport({...report, [key]: e.target.value})}
+                  />
+                </div>
+              ))}
+            </div>
+            <button>Submit Changes</button>
+          </div>
+        </div>
       ) }
     </div>
   );
