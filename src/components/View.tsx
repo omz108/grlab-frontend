@@ -9,6 +9,7 @@ export function View() {
   const [allRudraksha, setAllRudraksha] = useState<any | null>(null);
   const [reportNumber, setReportNumber] = useState("");
   const [isEditing, setIsEditing] = useState(false);
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   // Function to handle fetching and displaying all reports - Gems
   const showAllGems = async () => {
@@ -61,6 +62,43 @@ export function View() {
       }
     }
   };
+
+  const handleImageChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      setImageFile(e.target.files[0]);
+    }
+  }
+
+  const handleEditSubmit = async () => {
+
+    const formData = new FormData();
+    Object.keys(report).forEach((key) => {
+      if (key !== 'id') {
+        formData.append(key, report[key]);
+      }
+    });
+
+    if (imageFile) {
+      formData.append("image", imageFile);
+    }
+
+    try {
+      const response = await api.put(`/admin/report/${report.reportNumber}`, formData, {
+        headers: { "Content-Type": "multipart/form-data"}
+      });
+      alert(response.data.message);
+      setReport(response.data.updatedReport);
+      setIsEditing(false);
+    } catch(error:any) {
+      if (error.response && error.response.data.error) {
+        alert(error.response.data.error);
+      } else {
+        alert("Error updating report.");
+      }
+    }
+  }
+
+  
 
   return (
     <div>
@@ -211,13 +249,16 @@ export function View() {
       </div>) : (
         <div className="flex justify-center">
           <div className="w-full max-w-3xl bg-white p-10 pl-20">
-            <h2 className="text-2xl font-bold mb-4 text-red-400">Edit Report</h2>
+            <div className="flex">
+            <h2 className="text-2xl font-bold mb-4 text-red-400">Edit Report - </h2>
+            <h2 className="text-2xl font-bold ml-1">{report.reportNumber}</h2>
+            </div>
             <div className="grid grid-cols-2 gap-4">
               {Object.keys(report)
-              .filter((key) => key !== 'id')
+              .filter((key) => key !== 'id' && key!== 'reportNumber' && key !== 'imageUrl')
               .map((key) => (
                 <div key={key}>
-                  <label htmlFor={key} className="block font-medium">{key}</label>
+                  <label htmlFor={key} className="block font-medium capitalize">{key.replace(/([A-Z])/g, " $1")}</label>
                   <input 
                   type="text"
                   name={key}
@@ -228,8 +269,20 @@ export function View() {
                   />
                 </div>
               ))}
+              <div>
+                <label className="font-medium block">Image</label>
+                <input 
+                type="file" 
+                accept="/image/*"
+                onChange={handleImageChange}
+                className="w-60 px-2 py-2 border rounded"
+                />
+              </div>
             </div>
-            <button>Submit Changes</button>
+            <button
+            onClick={handleEditSubmit}
+            className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600"
+            >Submit Changes</button>
           </div>
         </div>
       ) }
