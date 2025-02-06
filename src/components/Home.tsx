@@ -11,8 +11,10 @@ export function Home() {
     const [otp, setOtp] = useState('');
     const [report, setReport] = useState<any | null>(null);
     const [error, setError] = useState<any | null>(null);
+    const [otpSent, setOtpSent] = useState(false);
+    const [otpVerified, setOtpVerified] = useState(false);
 
-    return <>
+    return <div>
         <div className="pt-10 flex flex-col items-center">
             <div className="text-blue-950 font-extrabold">
                 <h1>REPORT VERIFICATION SYSTEM</h1>
@@ -20,27 +22,20 @@ export function Home() {
             <p className="py-4 font-bold">Please enter details and click Show for result.</p>
             <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
                 <div className="space-y-4">
+                    
                     <div>
-                        <label htmlFor="reportId">Report Number</label>
+                        <label htmlFor="mobNum" className="block text-sm font-md">Mobile Number</label>
                         <input 
-                        className="py-1 px-3 ml-3  border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
-                        type="text" id="reportId"
-                        onChange={(e) =>{ setReportNumber(e.target.value)
-                        }}
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="mobNum">Mobile Number</label>
-                        <input 
-                        className="py-1 px-3 ml-3  border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                        disabled={otpSent}
+                        className="py-1 px-3 mr-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
                         type="tel"
                         pattern="[0-9]*"
                         id="mobNum"
                         onChange={(e) => setMobileNumber(`+91${e.target.value}`)}
                         />
-                    </div>
-                    <div className="flex justify-center">
-                        <button className="px-3 py-1 bg-blue-400 text-white rounded-lg hover:bg-blue-500"
+                        <button
+                        disabled={otpSent} 
+                        className="px-3 py-1 bg-blue-400 text-white rounded-lg hover:bg-blue-500 disabled:bg-gray-400"
                         onClick={ async () => {
                             try {
                                 const res = await api.post('/otp/generate',
@@ -49,6 +44,9 @@ export function Home() {
                                     }}
                                 )
                                 console.log(res.data);
+                                if (res?.status === 200) {
+                                    setOtpSent(true);
+                                }
                                 setError(null);
                             } catch(err: any) {
                                 console.log('error ho gya', err);
@@ -62,22 +60,58 @@ export function Home() {
                         >Send OTP</button>
                     </div>
                     <div>
-                        <label htmlFor="otp">Enter OTP</label>
+                        <label htmlFor="otp" className="block text-sm font-md">Enter OTP</label>
                         <input 
-                        className="py-1 px-3 ml-12  border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                        className="py-1 px-3 mr-2 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
                         type="number" id="otp"
                         onChange={(e) => setOtp(e.target.value)}
+                        disabled={!otpSent || otpVerified}
+                        />
+                        <button
+                        disabled={!otpSent || otpVerified} 
+                        className="px-3 py-1 bg-blue-400 text-white rounded-lg hover:bg-blue-500 disabled:bg-gray-400"
+                        onClick={ async () => {
+                            try {
+                                const res = await api.post('/otp/verify',
+                                    { mobileNumber, otp }, { headers: {
+                                        "Content-Type": "application/json"
+                                    }}
+                                )
+                                console.log(res?.data);
+                                if (res.status === 200) {
+                                    setOtpVerified(true);
+                                }
+                                setError(null);
+                            } catch(err: any) {
+                                console.log('error ho gya', err);
+                                if ( err.response || err.response.data || err.response.data.error) {
+                                    setError(err.response.data.error)
+                                } else {
+                                    setError('An unknown error occured');
+                                }
+                            }
+                        }}
+                        >Verify</button>
+                    </div>
+                    <div>
+                        <label htmlFor="reportId" className="block text-sm font-md">Report Number</label>
+                        <input
+                        disabled={!otpVerified}
+                        className="py-2 px-3 w-full  border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                        type="text" id="reportId"
+                        onChange={(e) =>{ setReportNumber(e.target.value)
+                        }}
                         />
                     </div>
                     <div className="flex justify-center">
-                        <button className="px-3 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500"
+                        <button 
+                        disabled={!otpVerified}
+                        className="px-3 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 disabled:bg-gray-400"
                         onClick={ async () => {
                             try {
                                 const res = await api.post('/reportDetails',
                                     { 
-                                        reportNumber,
-                                        mobileNumber,
-                                        otp
+                                        reportNumber
                                     }, { headers: {
                                         "Content-Type": 'application/json'
                                     }}
@@ -87,6 +121,7 @@ export function Home() {
                                 setError(null);
                             } catch(err: any) {
                                 console.log('error ho gya', err);
+                                setReport(null);
                                 if ( err.response || err.response.data || err.response.data.error) {
                                     setError(err.response.data.error)
                                 } else {
@@ -106,5 +141,7 @@ export function Home() {
                 {report?.reportNumber?.startsWith('R') && <RudrakshaReportCard report={report} />}
             </div>   
         </div>
-    </>
+    </div>
+    
+    
 }
