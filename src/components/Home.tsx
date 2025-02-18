@@ -23,7 +23,7 @@ export function Home() {
             <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
                 <div className="space-y-4">
                     
-                    <div>
+                    {/* <div>
                         <label htmlFor="mobNum" className="block text-sm font-md">Mobile Number</label>
                         <input 
                         disabled={otpSent}
@@ -92,12 +92,12 @@ export function Home() {
                             }
                         }}
                         >Verify</button>
-                    </div>
+                    </div> */}
                     <div>
-                        <label htmlFor="reportId" className="block text-sm font-md">Report Number</label>
+                        <label htmlFor="reportId" className="text-xl font-md mr-2">Report Number</label>
                         <input
-                        disabled={!otpVerified}
-                        className="py-2 px-3 w-full  border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                        // disabled={!otpVerified}
+                        className="py-2 px-3 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
                         type="text" id="reportId"
                         onChange={(e) =>{ setReportNumber(e.target.value)
                         }}
@@ -105,7 +105,7 @@ export function Home() {
                     </div>
                     <div className="flex justify-center">
                         <button 
-                        disabled={!otpVerified}
+                        // disabled={!otpVerified}
                         className="px-3 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 disabled:bg-gray-400"
                         onClick={ async () => {
                             try {

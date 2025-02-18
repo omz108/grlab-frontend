@@ -1,16 +1,16 @@
 export function GemReportCard({ report }: { report: any }) {
     const fields = [
       { label: "Report Number", value: report.reportNumber },
-      { label: "Conclusions", value: report.conclusions },
+      { label: "Weight", value: report.weight },
       { label: "Colour", value: report.colour },
       { label: "Dimensions", value: report.dimensions },
       { label: "Shape & Cut", value: report.shapeCut },
       { label: "Species", value: report.species },
-      { label: "Weight", value: report.weight },
       { label: "Refractive Index", value: report.refractiveIndex },
       { label: "Specific Gravity", value: report.specificGravity },
       { label: "Optic Character", value: report.opticCharacter },
       { label: "Magnification", value: report.magnification },
+      { label: "Conclusions", value: report.conclusions },
       { label: "Remarks", value: report.remarks },
     ];
   
