@@ -7,12 +7,12 @@ import { RudrakshaReportCard } from "./RudrakshaReportCard";
 export function Home() {
 
     const [reportNumber, setReportNumber] = useState('');
-    const [mobileNumber, setMobileNumber] = useState('');
-    const [otp, setOtp] = useState('');
+    // const [mobileNumber, setMobileNumber] = useState('');
+    // const [otp, setOtp] = useState('');
     const [report, setReport] = useState<any | null>(null);
     const [error, setError] = useState<any | null>(null);
-    const [otpSent, setOtpSent] = useState(false);
-    const [otpVerified, setOtpVerified] = useState(false);
+    // const [otpSent, setOtpSent] = useState(false);
+    // const [otpVerified, setOtpVerified] = useState(false);
 
     return <div>
         <div className="pt-10 flex flex-col items-center">
