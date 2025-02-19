@@ -94,10 +94,10 @@ export function Home() {
                         >Verify</button>
                     </div> */}
                     <div>
-                        <label htmlFor="reportId" className="text-xl font-md mr-2">Report Number</label>
+                        <label htmlFor="reportId" className="text-lg font-md mr-1">Report Number</label>
                         <input
                         // disabled={!otpVerified}
-                        className="py-2 px-3 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
+                        className="py-2 px-3 border rounded-lg focus:outline-none focus:border-blue-300"
                         type="text" id="reportId"
                         onChange={(e) =>{ setReportNumber(e.target.value)
                         }}
