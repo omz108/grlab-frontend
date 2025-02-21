@@ -16,10 +16,10 @@ export function Home() {
 
     return <div>
         <div className="pt-10 flex flex-col items-center">
-            <div className="text-blue-950 font-extrabold">
-                <h1>REPORT VERIFICATION SYSTEM</h1>
+            <div className="text-2xl text-blue-950 font-extrabold">
+                <h1>Verify Your Report</h1>
             </div>
-            <p className="py-4 font-bold">Please enter details and click Show for result.</p>
+            <p className="py-4 font-bold">Please enter details and click Show Report.</p>
             <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
                 <div className="space-y-4">
                     

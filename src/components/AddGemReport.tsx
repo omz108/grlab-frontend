@@ -4,16 +4,15 @@ import { GemReportCard } from "./GemReportCard";
 
 export function AddGemReport() {
   const [reportData, setReportData] = useState({
-    conclusions: "",
-    colour: "",
-    dimensions: "",
-    shapeCut: "",
-    species: "",
+    gemStoneName: "",
     weight: "",
+    colour: "",
+    shapeCut: "",
+    dimension: "",
+    // species: "",
     refractiveIndex: "",
     specificGravity: "",
     opticCharacter: "",
-    magnification: "",
     remarks: "",
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -58,16 +57,15 @@ export function AddGemReport() {
 
       // Reset form
       setReportData({
-        conclusions: "",
+        gemStoneName: "",
         colour: "",
-        dimensions: "",
+        dimension: "",
         shapeCut: "",
-        species: "",
+        // species: "",
         weight: "",
         refractiveIndex: "",
         specificGravity: "",
         opticCharacter: "",
-        magnification: "",
         remarks: "",
       });
       setImageFile(null);

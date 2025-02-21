@@ -6,15 +6,12 @@ export function AddRudraksha() {
   const [reportData, setReportData] = useState({
     weight: "",
     colour: "",
-    mounted: "",
     shape: "",
     dimension: "",
-    naturalFaces: "",
-    artificialFaces: "",
+    realFace: "",
+    artificialFace: "",
     testCameOut: "",
-    xRayResult: "",
-    origin: "",
-    comment: "",
+    remarks: "",
   });
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [submittedReport, setSubmittedReport] = useState(null);
@@ -60,15 +57,12 @@ export function AddRudraksha() {
       setReportData({
         weight: "",
         colour: "",
-        mounted: "",
         shape: "",
         dimension: "",
-        naturalFaces: "",
-        artificialFaces: "",
+        realFace: "",
+        artificialFace: "",
         testCameOut: "",
-        xRayResult: "",
-        origin: "",
-        comment: "",
+        remarks: "",
       });
       setImageFile(null);
     } catch (error: any) {
