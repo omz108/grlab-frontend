@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../api/axiosInstance";
-import { GemReportCard } from "./GemReportCard";
 import { RudrakshaReportCard } from "./RudrakshaReportCard";
+import { AdminGemCard } from "./AdminGemCard";
 
 export function View() {
   const [report, setReport] = useState<any | null>(null);
@@ -161,14 +161,14 @@ export function View() {
       </div>
 
       {/* Displaying selected report or list of all reports */}
-      {!isEditing? (<div>
+      {!isEditing? (<div className="">
         {/* Display single report */}
         <div className="flex justify-center">
-        {report?.reportNumber?.startsWith('G') && <GemReportCard report={report} />}
+        {report?.reportNumber?.startsWith('G') && <AdminGemCard report={report} />}
         {report?.reportNumber?.startsWith('R') && <RudrakshaReportCard report={report} />}
         </div>
         {
-          report && <div className="flex justify-center gap-4 -mt-20">
+          report && <div className="flex justify-center gap-4 -mt-30">
           <button
             onClick={() => setIsEditing(true)}
             className="bg-yellow-500 text-white py-2 px-4 rounded hover:bg-yellow-600"

@@ -1,4 +1,6 @@
-export function GemReportCard({ report }: { report: any }) {
+import bgImage from "../assets/grlab_card.jpg";
+
+export function AdminGemCard({ report }: { report: any }) {
     const fields = [
       { label: "Report Number", value: report.reportNumber },
       { label: "Gem Stone Name", value: report.gemStoneName },
@@ -14,37 +16,41 @@ export function GemReportCard({ report }: { report: any }) {
     ];
   
     return (
-      <div className="my-12 w-[793px] h-[561px] max-w-4xl bg-white p-6 rounded-lg shadow-md border flex printable-report">
+      <div className="w-[225px] h-[160px] bg-cover bg-center bg-no-repeat p-2 rounded-md shadow-md border flex flex-col printable-report"
+      style={{ backgroundImage: `url(${bgImage})` }}
+      >
+        <div className="flex justify-between px-1 text-[8px] font-semibold text-gray-800 mb-1">
+          <span>Report No: {report.reportNumber || "N/A"}</span>
+          <span>Date: {new Date().toLocaleDateString()}</span>
+        </div>
   
-        {/* Details Section */}
-        <div className="flex-grow p-10">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Report Details</h2>
-          <div className="space-y-2">
+        {/* Left-Right Partition */}
+        <div className="flex flex-grow">
+          {/* Left-side */}
+          <div className="flrx-grow flex flex-col justify-center px-1">
             {fields.map(({ label, value }) => (
-              <div key={label} className="flex">
-                <span className="w-48 font-medium text-gray-700">{label}:</span>
-                <span className={`text-gray-900 ${
-                    label === "Report Number" ? "font-bold" : ""
-                }`}>{value || "N/A"}</span>
+              <div key={label} className="flex text-[7px]">
+                <span className="w-24 font-semibold text-gray-700 truncate">{label}:</span>
+                <span className={`text-gray-900 flex-1 truncate}`}>{value || "N/A"}</span>
               </div>
             ))}
           </div>
-        </div>
 
-        {/* Image Section */}
-        <div className="flex-shrink-0 w-1/3 flex items-center">
-          <div className="w-40 h-40 border border-gray-300 rounded-lg overflow-hidden bg-gray-100 ">
-            {report.imageUrl ? (
-              <img
-                src={report.imageUrl}
-                alt="Report Image"
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center text-gray-500">
-                No Image Available
-              </div>
-            )}
+          {/* Right-side / Image Section */}
+          <div className="flex-shrink-0 w-1/3 flex items-center justify-center">
+            <div className="w-20 h-18 border border-gray-300 rounded-lg overflow-hidden bg-gray-100 ">
+              {report.imageUrl ? (
+                <img
+                  src={report.imageUrl}
+                  alt="Gem Image"
+                  className="w-full h-full object-cover"
+                />
+              ) : (
+                <div className="w-full h-full flex items-center justify-center text-gray-500">
+                  No Image Available
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

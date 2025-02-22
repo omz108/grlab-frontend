@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../api/axiosInstance";
-import { GemReportCard } from "./GemReportCard";
 import { RudrakshaReportCard } from "./RudrakshaReportCard";
+import { AdminGemCard } from "./AdminGemCard";
 
 type Report = {
   reportNumber: string;
@@ -82,7 +82,7 @@ export function EditReport() {
           {!isEditing ? (
             <div>
               {fetchedReport.reportNumber.startsWith("G") ? (
-                <GemReportCard report={fetchedReport} />
+                <AdminGemCard report={fetchedReport} />
               ) : fetchedReport.reportNumber.startsWith("R") ? (
                 <RudrakshaReportCard report={fetchedReport} />
               ) : (

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/grlabLogo.jpg";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,10 +17,14 @@ const Navbar = () => {
     <nav className="bg-blue-600">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          <div className="flex-shrink-0">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
             <button onClick={() => { navigate('/') }} className="text-white text-xl font-bold">
-              grlab
+              <img src={ logo } alt="grlab" className="h-10 w-auto sm:h-12 md:h-16" />
             </button>
+            {/* <a href="/" className="flex items-center">
+              
+            </a> */}
           </div>
           <div className="hidden md:flex space-x-8">
             {menuOptions.map((option) => (

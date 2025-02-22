@@ -14,7 +14,7 @@ export function GemReportCard({ report }: { report: any }) {
     ];
   
     return (
-      <div className="my-12 w-[793px] h-[561px] max-w-4xl bg-white p-6 rounded-lg shadow-md border flex printable-report">
+      <div className="my-6 md:w-[793px] h-auto md:h-[561px] bg-white p-6 rounded-lg shadow-md border flex printable-report">
   
         {/* Details Section */}
         <div className="flex-grow p-10">
