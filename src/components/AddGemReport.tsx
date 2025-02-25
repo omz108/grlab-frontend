@@ -9,7 +9,6 @@ export function AddGemReport() {
     colour: "",
     shapeCut: "",
     dimension: "",
-    // species: "",
     refractiveIndex: "",
     specificGravity: "",
     opticCharacter: "",
@@ -33,10 +32,6 @@ export function AddGemReport() {
 
   // Handle form submission
   const handleSubmit = async () => {
-    // if (!reportData.reportNumber) {
-    //   alert("Report Number is required!");
-    //   return;
-    // }
 
     const formData = new FormData();
     // Append text fields to FormData
@@ -61,7 +56,6 @@ export function AddGemReport() {
         colour: "",
         dimension: "",
         shapeCut: "",
-        // species: "",
         weight: "",
         refractiveIndex: "",
         specificGravity: "",
@@ -79,10 +73,6 @@ export function AddGemReport() {
     }
   };
 
-  // Handle printing the report
-  const handlePrint = () => {
-    window.print();
-  };
 
   return (
     <div className="p-6">
@@ -133,12 +123,6 @@ export function AddGemReport() {
             className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition"
           >
             Add Another Report
-          </button>
-          <button
-            onClick={handlePrint}
-            className="mt-4 ml-2 bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600 transition"
-          >
-            Print Report
           </button>
         </div>
       )}

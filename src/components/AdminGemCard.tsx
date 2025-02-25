@@ -29,7 +29,8 @@ export function AdminGemCard({ report }: { report: any }) {
         scale: 2, 
         useCORS: true,
         width: card.scrollWidth, 
-        height: card.scrollHeight
+        height: card.scrollHeight + 50,
+        windowHeight: card.scrollHeight
       })
         .then((canvas) => {
           console.log("Image generated!");
@@ -68,7 +69,7 @@ export function AdminGemCard({ report }: { report: any }) {
               {fields.map(({ label, value }) => (
                 <div key={label} className="flex text-[20px] py-0.5">
                   <span className="w-48 font-semibold text-gray-700 whitespace-nowrap flex-shrink-0">{label}:</span>
-                  <span className="text-gray-900 flex-1 min-w-0 truncate whitespace-nowrap leading-[1.2]">{value || "N/A"}</span>
+                  <span className="text-gray-900 flex-1 min-w-0 truncate whitespace-nowrap leading-[1]">{value || "N/A"}</span>
                 </div>
               ))}
             </div>

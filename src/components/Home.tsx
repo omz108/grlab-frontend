@@ -19,8 +19,8 @@ export function Home() {
             <div className="text-2xl text-blue-950 font-extrabold">
                 <h1>Verify Your Report</h1>
             </div>
-            <p className="py-4 font-bold">Please enter details and click Show Report.</p>
-            <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
+            <p className="py-4 font-bold">Please enter Report Number and click Show Report.</p>
+            <div className="max-w-md w-full ">
                 <div className="space-y-4">
                     
                     {/* <div>
@@ -94,7 +94,7 @@ export function Home() {
                         >Verify</button>
                     </div> */}
                     <div>
-                        <label htmlFor="reportId" className="text-lg font-md mr-1">Report Number</label>
+                        <label htmlFor="reportId" className="text-lg font-md mr-2">Report Number</label>
                         <input
                         // disabled={!otpVerified}
                         className="py-2 px-3 border rounded-lg focus:outline-none focus:border-blue-300"
