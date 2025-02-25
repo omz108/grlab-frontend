@@ -1,5 +1,5 @@
 import html2canvas from "html2canvas";
-import bgImage from "../assets/grlab_card.jpg";
+import bgImage from "../assets/grlab_bg.jpg";
 
 export function AdminGemCard({ report }: { report: any }) {
     const fields = [
@@ -21,13 +21,18 @@ export function AdminGemCard({ report }: { report: any }) {
     
       const card = document.getElementById("printable-card");
       if (!card) {
-        console.error("❌ Element not found!");
+        console.error("Element not found!");
         return;
       }
     
-      html2canvas(card, { scale: 2, useCORS: true })
+      html2canvas(card, { 
+        scale: 2, 
+        useCORS: true,
+        width: card.scrollWidth, 
+        height: card.scrollHeight
+      })
         .then((canvas) => {
-          console.log("✅ Image generated!");
+          console.log("Image generated!");
     
           const dataUrl = canvas.toDataURL("image/jpeg", 1.0);
           const link = document.createElement("a");
@@ -36,7 +41,7 @@ export function AdminGemCard({ report }: { report: any }) {
           link.click();
         })
         .catch((error) => {
-          console.error("❌ Failed to save image:", error);
+          console.error("Failed to save image:", error);
         });
     };
     
@@ -49,12 +54,12 @@ export function AdminGemCard({ report }: { report: any }) {
         className="w-[1012px] h-[638px] bg-contain bg-top bg-no-repeat p-2 rounded-md shadow-md border flex flex-col printable-report relative"
         style={{ backgroundImage: `url(${bgImage})` }}
         >
-          <div className="flex justify-between px-3 text-[22px] font-bold text-gray-800 relative z-10 mt-24">
+          <div className="flex justify-between px-3 text-[22px] font-bold text-gray-800 relative z-10 mt-36">
             <span>Report No: {report.reportNumber || "N/A"}</span>
             <span>Date: {new Date().toLocaleDateString()}</span>
           </div>
 
-          <div className="text-[26px] font-bold text-center text-red-500 mt-1">{report.gemStoneName}</div>
+          <div className="text-[26px] font-bold text-center text-red-500 ">{report.gemStoneName}</div>
     
           {/* Left-Right Partition */}
           <div className="flex flex-grow justify-between relative z-10 px-10 mt-2">
