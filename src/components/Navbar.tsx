@@ -22,6 +22,12 @@ const Navbar = () => {
             <button onClick={() => { navigate('/') }} className="text-blue-600 text-xl font-bold">
               <img src={ logo } alt="grlab" className="h-10 w-auto sm:h-12 md:h-16" />
             </button>
+            <div className="text-blue-600 font-extrabold text-base sm:text-lg md:text-xl leading-tight sm:leading-snug text-center sm:text-left">
+              <p>GRL</p>
+              <p className="text-sm sm:text-base md:text-lg">
+                GEMSTONE & RUDRAKSHA LABORATORY
+              </p>
+            </div>
           </div>
           <div className="hidden md:flex space-x-8">
             {menuOptions.map((option) => (
@@ -30,7 +36,7 @@ const Navbar = () => {
                 onClick={() => {
                     navigate(option.href)
                 }}
-                className="text-blue-600 font-semibold hover:text-gray-400"
+                className="text-blue-600 font-semibold md:font-extrabold md:text-2xl hover:text-gray-400"
               >
                 {option.label}
               </button>
