@@ -14,17 +14,14 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-blue-600">
+    <nav className="bg-white shadow-md">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <button onClick={() => { navigate('/') }} className="text-white text-xl font-bold">
+            <button onClick={() => { navigate('/') }} className="text-blue-600 text-xl font-bold">
               <img src={ logo } alt="grlab" className="h-10 w-auto sm:h-12 md:h-16" />
             </button>
-            {/* <a href="/" className="flex items-center">
-              
-            </a> */}
           </div>
           <div className="hidden md:flex space-x-8">
             {menuOptions.map((option) => (
@@ -33,7 +30,7 @@ const Navbar = () => {
                 onClick={() => {
                     navigate(option.href)
                 }}
-                className="text-white hover:text-gray-200"
+                className="text-blue-600 font-semibold hover:text-gray-400"
               >
                 {option.label}
               </button>
@@ -42,7 +39,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:text-gray-200 focus:outline-none"
+              className="text-blue-600 font-semibold hover:text-gray-400 focus:outline-none"
             >
               <svg
                 className="h-6 w-6"
@@ -69,12 +66,12 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-blue-600">
+        <div className="md:hidden bg-gray-100 border shadow-md">
           {menuOptions.map((option) => (
             <a
               key={option.label}
               href={option.href}
-              className="block px-4 py-2 text-white hover:bg-blue-500"
+              className="block px-4 py-2 text-blue-600 font-semibold hover:bg-gray-50 hover:text-blue-900"
             >
               {option.label}
             </a>
