@@ -12,11 +12,11 @@ export function RudrakshaReportCard({ report }: { report: any }) {
     ];
   
     return (
-      <div className="my-12 w-[793px] h-[561px] max-w-4xl bg-white p-6 rounded-lg shadow-md border flex printable-report">
+      <div className="my-6 w-full md:w-[793px] h-auto md:h-[561px] bg-white p-4 md:p-6 rounded-md md:rounded-lg shadow-md border flex flex-col md:flex-row printable-report">
   
         {/* Details Section */}
         <div className="flex-grow p-10">
-          <h2 className="text-xl font-semibold text-gray-800 mb-4">Report Details</h2>
+          <h2 className="text-lg md:text-xl font-semibold text-red-400 mb-3 md:mb-4 text-center">Report Details</h2>
           <div className="space-y-2">
             {fields.map(({ label, value }) => (
               <div key={label} className="flex">
@@ -31,8 +31,8 @@ export function RudrakshaReportCard({ report }: { report: any }) {
         </div>
 
         {/* Image Section */}
-        <div className="flex-shrink-0 w-1/3 flex items-center">
-          <div className="w-40 h-40 border border-gray-300 rounded-lg overflow-hidden bg-gray-100 ">
+        <div className="flex-shrink-0 w-full md:w-1/3 flex flex-col justify-center items-center mt-4 md:mt-0">
+          <div className="w-32 h-32 md:w-40 md:h-40 border border-gray-300 rounded-lg overflow-hidden bg-gray-100 ">
             {report.imageUrl ? (
               <img
                 src={report.imageUrl}
@@ -45,6 +45,9 @@ export function RudrakshaReportCard({ report }: { report: any }) {
               </div>
             )}
           </div>
+          <p className="mt-2 text-gray-800 font-medium text-sm md:text-base">
+            {report.gemStoneName || "Rudraksha"}
+          </p>
         </div>
       </div>
     );

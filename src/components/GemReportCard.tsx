@@ -1,12 +1,10 @@
 export function GemReportCard({ report }: { report: any }) {
     const fields = [
       { label: "Report Number", value: report.reportNumber },
-      // { label: "Gem Stone Name", value: report.gemStoneName },
       { label: "Weight", value: report.weight },
       { label: "Colour", value: report.colour },
       { label: "Shape & Cut", value: report.shapeCut },
       { label: "Dimension", value: report.dimension },
-    //   { label: "Species", value: report.species },
       { label: "Optic Character", value: report.opticCharacter },
       { label: "Refractive Index", value: report.refractiveIndex },
       { label: "Specific Gravity", value: report.specificGravity },
@@ -17,14 +15,14 @@ export function GemReportCard({ report }: { report: any }) {
       <div className="my-6 w-full md:w-[793px] h-auto md:h-[561px] bg-white p-4 md:p-6 rounded-md md:rounded-lg shadow-md border flex flex-col md:flex-row printable-report">
   
         {/* Details Section */}
-        <div className="flex-grow p-5 md:p-10">
-          <h2 className="text-lg md:text-xl font-semibold text-gray-800 mb-3 md:mb-4">Report Details</h2>
+        <div className="flex-grow p-10">
+          <h2 className="text-lg md:text-xl font-semibold text-red-400 mb-3 md:mb-4 text-center">Report Details</h2>
           <div className="space-y-2">
             {fields.map(({ label, value }) => (
-              <div key={label} className="flex gap-2">
-                <span className="md:w-48 font-medium text-gray-800">{label}:</span>
+              <div key={label} className="flex">
+                <span className="w-48 font-medium text-gray-800">{label}:</span>
                 <span className={`text-gray-900 ${
-                    label === "Report Number" ? "font-bold" : ""
+                    label === "Report Number" ? "font-semibold" : ""
                 }`}>{value || "N/A"}</span>
               </div>
             ))}
@@ -47,8 +45,8 @@ export function GemReportCard({ report }: { report: any }) {
             )}
           </div>
           <p className="mt-2 text-gray-800 font-medium text-sm md:text-base">
-        {report.gemStoneName || "Unknown Stone"}
-      </p>
+            {report.gemStoneName || "Gem Stone"}
+          </p>
         </div>
       </div>
     );

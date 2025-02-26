@@ -1,7 +1,7 @@
 import { useState } from "react";
 import api from "../api/axiosInstance";
-import { RudrakshaReportCard } from "./RudrakshaReportCard";
 import { AdminGemCard } from "./AdminGemCard";
+import { AdminRCard } from "./AdminRCard";
 
 export function View() {
   const [report, setReport] = useState<any | null>(null);
@@ -81,6 +81,7 @@ export function View() {
     if (imageFile) {
       formData.append("image", imageFile);
     }
+    // setImageFile(null);   // reset image file as null
 
     try {
       const response = await api.put(`/admin/report/${report.reportNumber}`, formData, {
@@ -165,7 +166,7 @@ export function View() {
         {/* Display single report */}
         <div className="flex justify-center">
         {report?.reportNumber?.startsWith('G') && <AdminGemCard report={report} />}
-        {report?.reportNumber?.startsWith('R') && <RudrakshaReportCard report={report} />}
+        {report?.reportNumber?.startsWith('R') && <AdminRCard report={report} />}
         </div>
         {
           report && <div className="flex justify-center gap-4 -mt-30">

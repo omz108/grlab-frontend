@@ -29,7 +29,7 @@ export function AdminGemCard({ report }: { report: any }) {
         scale: 2, 
         useCORS: true,
         width: card.scrollWidth, 
-        height: card.scrollHeight + 50,
+        height: card.scrollHeight,
         windowHeight: card.scrollHeight
       })
         .then((canvas) => {
