@@ -12,7 +12,7 @@ export function AddReport() {
 
   return (
     <div className='flex justify-center'>
-    <div className="my-12 w-full max-w-5xl bg-white p-6 rounded-lg shadow-md border">
+    <div className="my-12 w-full max-w-6xl bg-white p-6 rounded-lg shadow-md border">
       <h2 className="text-xl font-semibold text-gray-800 mb-4">Add New Report</h2>
 
       {/* Report Type Selection */}

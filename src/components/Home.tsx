@@ -93,7 +93,7 @@ export function Home() {
                         }}
                         >Verify</button>
                     </div> */}
-                    <div>
+                    <div className="flex justify-center">
                         <label htmlFor="reportId" className="text-lg font-md mr-2">Report Number</label>
                         <input
                         // disabled={!otpVerified}
