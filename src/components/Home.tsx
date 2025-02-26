@@ -15,12 +15,12 @@ export function Home() {
     // const [otpVerified, setOtpVerified] = useState(false);
 
     return <div>
-        <div className="pt-10 flex flex-col items-center">
-            <div className="text-2xl text-blue-950 font-extrabold">
+        <div className="pt-10 flex flex-col items-center px-4 sm:px-0">
+            <div className="text-2xl sm:text:3xl text-blue-950 font-extrabold text-center">
                 <h1>Verify Your Report</h1>
             </div>
-            <p className="py-4 font-bold">Please enter Report Number and click Show Report.</p>
-            <div className="max-w-md w-full ">
+            <p className="py-4 font-bold text-center text-sm sm:text-base max-w-xs sm:max-w-lg">Please enter Report Number and click Show Report.</p>
+            <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
                 <div className="space-y-4">
                     
                     {/* <div>
@@ -93,20 +93,20 @@ export function Home() {
                         }}
                         >Verify</button>
                     </div> */}
-                    <div className="flex justify-center">
-                        <label htmlFor="reportId" className="text-lg font-md mr-2">Report Number</label>
+                    <div className="flex flex-col">
+                        <label htmlFor="reportId" className="text-lg font-md mb-1">Report Number</label>
                         <input
                         // disabled={!otpVerified}
-                        className="py-2 px-3 border rounded-lg focus:outline-none focus:border-blue-300"
+                        className="w-full py-2 px-3 border rounded-lg focus:outline-none focus:border-blue-300"
                         type="text" id="reportId"
                         onChange={(e) =>{ setReportNumber(e.target.value)
                         }}
                         />
                     </div>
-                    <div className="flex justify-center">
+                    {/* <div className="flex justify-center"> */}
                         <button 
                         // disabled={!otpVerified}
-                        className="px-3 py-2 bg-blue-400 text-white rounded-lg hover:bg-blue-500 disabled:bg-gray-400"
+                        className="w-full px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition disabled:bg-gray-400"
                         onClick={ async () => {
                             try {
                                 const res = await api.post('/reportDetails',
@@ -130,10 +130,10 @@ export function Home() {
                             }
                         }}
                         >Show Report</button>
-                    </div>
-                    <div className="text-center">
-                        {error && <p className="text-red-500 mt-4">{error}</p>}
-                    </div>
+                    {/* </div> */}
+                    {/* <div className="text-center"> */}
+                        {error && <p className="text-red-500 text-center mt-2">{error}</p>}
+                    {/* </div> */}
                 </div>
             </div> 
             <div className="my-5">
