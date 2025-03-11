@@ -1,9 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import api from "../api/axiosInstance";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { isAdminLoggedInState } from "../store/adminState";
 
 export const AdminNavbar = () => {
 
     const navigate = useNavigate();
+    const isAdminLoggedIn = useRecoilValue(isAdminLoggedInState);
+    const setIsAdminLoggedIn = useSetRecoilState(isAdminLoggedInState);
 
     const menuOptions = [
         { label: 'AddReport', href: '/admin/addReport'},
@@ -25,26 +29,35 @@ export const AdminNavbar = () => {
                 <h1 className="text-red-300 text-3xl font-bold">Admin</h1>
             </div>
             <div className="space-x-8">
-                { menuOptions.map((option) => (
+            { isAdminLoggedIn ? (
+                <>
+                    { menuOptions.map((option) => (
+                        <button
+                        key={option.label}
+                        className=""
+                        onClick={() => navigate(option.href)}
+                        >{option.label}</button>
+                    ))}
                     <button
-                    key={option.label}
-                    className=""
-                    onClick={() => navigate(option.href)}
-                    >{option.label}</button>
-                ))}
-                <button
-                onClick={ async () => {
-                    try {
-                        const res = await api.post('/admin/logout');
-                        console.log(res.data.message);
-                        alert(res.data.message);
-                        navigate('/admin/login')
-                    } catch(err) {
-                        alert('You must login first');
-                        navigate('/admin/login')
-                    }
-                }}
-                >Logout</button>
+                    onClick={ async () => {
+                        try {
+                            const res = await api.post('/admin/logout');
+                            // console.log(res.data.message);
+                            alert(res.data.message);
+                        } catch(err) {
+                            alert('You must login first');
+                        } finally {
+                            setIsAdminLoggedIn(false);
+                            navigate('/admin/login')
+                        }
+                    }}
+                    >Logout</button>
+                </>
+            ) : (
+                <button onClick={() => navigate('/admin/login')}
+                className="text-xl font-semibold pr-5"
+                >Login</button>
+            )}
             </div>
         </div>
       </div>

@@ -1,13 +1,16 @@
 import { useEffect, useState } from "react"
 import api from "../api/axiosInstance";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { isAdminLoggedInState } from "../store/adminState";
+
 
 export function AdminLogin() {
 
     const [username, setUsername] = useState('');
     const [password, setpassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-
+    const setIsAdminLoggedIn = useSetRecoilState(isAdminLoggedInState)
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -16,10 +19,12 @@ export function AdminLogin() {
                 const res = await api.get('/admin/checkLogin');
                 if (res.status === 200) {
                     // alert(res.data.message);
+                    setIsAdminLoggedIn(true);
                     navigate('/admin/addReport');
                 }
             } catch(error) {
                 // 
+                setIsAdminLoggedIn(false);
             }
             
         }
@@ -40,7 +45,7 @@ export function AdminLogin() {
                 type="text" id="username" />
             </div>
             <div className="relative">
-                <label htmlFor="password">Passowrd</label>
+                <label htmlFor="password">Password</label>
                 <input 
                 className="py-1 ml-3 px-3 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"
                 onChange={(e) => setpassword(e.target.value)}
@@ -69,10 +74,12 @@ export function AdminLogin() {
                         )
                         // console.log(res.data);
                         if (res) {
+                            setIsAdminLoggedIn(true);
                             navigate('/admin/addReport')
                         }
                     } catch(err) {
-                        console.log(err)
+                        // console.log(err)
+                        setIsAdminLoggedIn(false);
                     }
                 }}
                 >Login</button>
