@@ -2,7 +2,7 @@
 export function About() {
 
     return <>
-    <div className="py-16 text-center">
+    <div className="py-16 text-center  text-white">
         <h2 className="text-3xl md:text-4xl font-bold mb-4">About Us</h2>
         <p className="text-lg max-w-4xl mx-auto">
             Welcome to Gemstone & Rudraksha Laboratory, a trusted name in the certification and 
@@ -18,7 +18,7 @@ export function About() {
         </p>
     </div>
     <div className="py-5 ">
-    <h2 className="text-3xl font-semibold mb-4 text-center">What We Do</h2>
+    <h2 className="text-3xl font-semibold mb-4 text-center  text-white">What We Do</h2>
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <div className="bg-white shadow-lg rounded-lg p-6">
               <h3 className="text-xl font-semibold text-indigo-600 mb-3">
@@ -49,37 +49,37 @@ export function About() {
             </div>
           </div>
     </div>
-    <div className="py-16">
+    <div className="py-16  text-white">
         <h3 className="text-3xl font-semibold mb-4 text-center">Why Choose Us?</h3>
-        <ul className="max-w-4xl mx-auto space-y-4 text-gray-600">
+        <ul className="max-w-4xl mx-auto space-y-4">
             <li className="flex items-start">
-              <span className="text-indigo-600 font-bold mr-2">•</span>
+              <span className="font-bold mr-2">•</span>
               <strong>Accuracy:</strong> Advanced equipment and meticulous
               testing methods.
             </li>
             <li className="flex items-start">
-              <span className="text-indigo-600 font-bold mr-2">•</span>
+              <span className="font-bold mr-2">•</span>
               <strong>Integrity:</strong> Unbiased certification, ensuring you
               receive honest and accurate results.
             </li>
             <li className="flex items-start">
-              <span className="text-indigo-600 font-bold mr-2">•</span>
+              <span className="font-bold mr-2">•</span>
               <strong>Trust:</strong> Building confidence in the authenticity of
               your gemstones and Rudraksha.
             </li>
           </ul>
     </div>
-    <div className="mb-12 text-center">
+    <div className="mb-12 text-center  text-white">
         <h2 className="text-3xl font-bold mb-4">Our Vision</h2>
-        <p className="text-gray-600 leading-7 max-w-4xl mx-auto text-center">
+        <p className="leading-7 max-w-4xl mx-auto text-center">
             To become a global leader in gemstone and Rudraksha testing,
             blending scientific excellence with traditional knowledge to foster
             trust and transparency in the industry.
           </p>
     </div>
-    <div className="mb-12 text-center">
+    <div className="mb-12 text-center  text-white">
         <h2 className="text-3xl font-bold mb-4">Our Mission</h2>
-        <p className="text-gray-600 leading-7 max-w-4xl mx-auto text-center">
+        <p className="leading-7 max-w-4xl mx-auto text-center">
             To provide reliable certification services, empowering individuals and
             businesses to make informed decisions about their spiritual and ornamental
             investments.

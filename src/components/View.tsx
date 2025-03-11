@@ -137,7 +137,7 @@ export function View() {
 
       {/* Show all Gem reports button */}
       <div className="m-5 flex">
-        <h2 className="px-3 py-2 font-medium">
+        <h2 className="px-3 py-2 font-medium  text-white">
           Show All Gem Reports
         </h2>
         <button
@@ -150,7 +150,7 @@ export function View() {
 
       {/* Show all Rudraksha reports button */}
       <div className="m-5 flex">
-        <h2 className="px-3 py-2 font-medium">
+        <h2 className="px-3 py-2 font-medium  text-white">
           Show All Rudraksha Reports
         </h2>
         <button

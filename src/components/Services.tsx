@@ -1,6 +1,6 @@
 export function Services() {
     return <div>
-        <h2 className="text-3xl font-semibold mb-4 text-center mt-10">Our Services</h2>
+        <h2 className="text-3xl font-semibold mb-4 text-center mt-10  text-white">Our Services</h2>
         <div className="grid grid-cols-1  gap-8 max-w-5xl mx-auto mb-10">
             <div className="bg-white shadow-lg rounded-lg p-6">
               <h3 className="text-xl font-semibold text-indigo-600 mb-3">

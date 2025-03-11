@@ -33,7 +33,7 @@ function Main() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className='flex flex-col min-h-screen bg-gray-50'>
+    <div className='flex flex-col min-h-screen'>
       {/* <Router> */}
         {!isAdminRoute && <Navbar />}
         <div className='flex-grow'>

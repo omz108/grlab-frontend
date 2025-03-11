@@ -16,10 +16,10 @@ export function Home() {
 
     return <div>
         <div className="pt-10 flex flex-col items-center px-4 sm:px-0">
-            <div className="text-2xl sm:text:3xl text-blue-950 font-extrabold text-center">
+            <div className="text-2xl sm:text:3xl text-white font-extrabold text-center">
                 <h1>Verify Your Report</h1>
             </div>
-            <p className="py-4 font-bold text-center text-sm sm:text-base max-w-xs sm:max-w-lg">Please enter Report Number and click Show Report.</p>
+            <p className="py-4 font-bold text-center text-white text-sm sm:text-base max-w-xs sm:max-w-lg">Please enter Report Number and click Show Report.</p>
             <div className="max-w-md w-full bg-white p-6 rounded-lg shadow-md">
                 <div className="space-y-4">
                     
