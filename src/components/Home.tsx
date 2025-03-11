@@ -14,8 +14,8 @@ export function Home() {
     // const [otpSent, setOtpSent] = useState(false);
     // const [otpVerified, setOtpVerified] = useState(false);
 
-    return <div>
-        <div className="pt-10 flex flex-col items-center px-4 sm:px-0">
+    return <div className="min-h-screen flex flex-col">
+        <div className="pt-20 flex flex-col items-center px-4 sm:px-0">
             <div className="text-2xl sm:text:3xl text-white font-extrabold text-center">
                 <h1>Verify Your Report</h1>
             </div>

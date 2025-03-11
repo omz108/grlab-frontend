@@ -1,7 +1,7 @@
 
 export function Contact() {
 
-    return <div className="pt-20 flex flex-col items-center">
+    return <div className="pt-20 flex flex-col items-center min-h-screen">
         <div className="text-xl font-bold max-w-md w-full bg-white p-8 rounded-lg shadow-lg">
             <div>
                 <h1 className="text-red-400 pb-1 border-b-2">Address</h1>
