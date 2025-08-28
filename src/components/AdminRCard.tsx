@@ -1,5 +1,6 @@
 import html2canvas from "html2canvas";
 import bgImage from "../assets/grlab_bg.jpg";
+import { QRCodeSVG } from "qrcode.react";
 
 export function AdminRCard({ report }: { report: any }) {
     const fields = [
@@ -12,6 +13,8 @@ export function AdminRCard({ report }: { report: any }) {
       { label: "Test Came Out", value: report.testCameOut },
       { label: "Remarks", value: report.remarks}
     ];
+
+    const qrCode = `https://grlab.in/report/${report.reportNumber}`;
 
     const handleSaveAsImage = () => {
       console.log("Saving as image...");
@@ -64,26 +67,33 @@ export function AdminRCard({ report }: { report: any }) {
             <div className="flex-grow flex flex-col space-y-2 ml-8 mt-2">
               {fields.map(({ label, value }) => (
                 <div key={label} className="flex text-[20px] py-0.5">
-                  <span className="w-48 font-semibold text-gray-700 whitespace-nowrap flex-shrink-0">{label}:</span>
-                  <span className="text-gray-900 flex-1 min-w-0 truncate whitespace-nowrap leading-[1]">{value || "N/A"}</span>
+                  <span className="w-48 font-bold text-black whitespace-nowrap flex-shrink-0">{label}:</span>
+                  <span className="text-black font-semibold flex-1 min-w-0 truncate whitespace-nowrap leading-[1]">{value || "N/A"}</span>
                 </div>
               ))}
             </div>
 
             {/* Right-side / Image Section */}
-            <div className="flex-shrink-0 w-[220px] flex justify-center mr-16">
-              <div className="w-[220px] h-[220px] overflow-hidden">
-                {report.imageUrl ? (
-                  <img
-                    src={report.imageUrl}
-                    alt="Rudraksha Image"
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center text-gray-500 text-[16px]">
-                    No Image Available
-                  </div>
-                )}
+            <div>
+              <div className="flex-shrink-0 w-[220px] flex justify-center mr-16">
+                <div className="w-[220px] h-[220px] overflow-hidden border border-gray-300 bg-white rounded-lg p-3">
+                  {report.imageUrl ? (
+                    <img
+                      src={report.imageUrl}
+                      alt="Rudraksha Image"
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-gray-500 text-[16px]">
+                      No Image Available
+                    </div>
+                  )}
+                </div>
+                <div>
+                </div>
+              </div>
+              <div className="flex justify-center items-center ml-8 mt-2 bg-white border w-[160px] h-[160px]">
+                <QRCodeSVG value={qrCode} size={100} />
               </div>
             </div>
           </div>

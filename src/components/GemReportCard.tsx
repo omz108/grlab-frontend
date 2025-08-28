@@ -31,7 +31,7 @@ export function GemReportCard({ report }: { report: any }) {
 
         {/* Image Section */}
         <div className="flex-shrink-0 w-full md:w-1/3 flex flex-col justify-center items-center mt-4 md:mt-0">
-          <div className="w-32 h-32 md:w-40 md:h-40 border border-gray-300 rounded-lg overflow-hidden bg-gray-100 ">
+          <div className="w-32 h-32 md:w-40 md:h-auto border border-gray-300 rounded-lg overflow-hidden bg-white flex justify-center items-center p-1">
             {report.imageUrl ? (
               <img
                 src={report.imageUrl}

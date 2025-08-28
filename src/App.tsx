@@ -14,6 +14,7 @@ import { useLocation } from 'react-router-dom';
 import { View } from './components/View';
 import { UploadExcel } from './components/UploadExcel';
 import { ProtectedRoute } from './components/ProtectedRoute';
+import { NewReport } from './components/NewReport';
 // import { AddGemReport } from './components/AddGemReport';
 
 
@@ -39,6 +40,7 @@ function Main() {
         <div className='flex-grow'>
           <Routes>
             <Route path='/' element={<Home />}></Route>
+            <Route path='/report/:reportNumber' element={<NewReport />}></Route>
             <Route path='/about' element={<About />}></Route>
             <Route path='/services' element={<Services />}></Route>
             <Route path='/contact' element={<Contact />}></Route>

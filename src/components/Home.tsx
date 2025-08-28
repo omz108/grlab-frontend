@@ -109,13 +109,7 @@ export function Home() {
                         className="w-full px-4 py-2 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 transition disabled:bg-gray-400"
                         onClick={ async () => {
                             try {
-                                const res = await api.post('/reportDetails',
-                                    { 
-                                        reportNumber
-                                    }, { headers: {
-                                        "Content-Type": 'application/json'
-                                    }}
-                                );
+                                const res = await api.get(`/reportDetails/${reportNumber}`);
                                 console.log(res.data);
                                 setReport(res.data);
                                 setError(null);

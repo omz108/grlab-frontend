@@ -1,6 +1,6 @@
 import { useState } from "react";
 import api from "../api/axiosInstance";
-import { RudrakshaReportCard } from "./RudrakshaReportCard";
+import { AdminRCard } from "./AdminRCard";
 
 export function AddRudraksha() {
   const [reportData, setReportData] = useState({
@@ -123,7 +123,7 @@ export function AddRudraksha() {
       ) : (
         <div>
           <h2 className="text-2xl font-bold mb-4 text-red-400">Report Added Successfully</h2>
-          <RudrakshaReportCard report={submittedReport} />
+          <AdminRCard report={submittedReport} />
           <button
             onClick={() => setSubmittedReport(null)}
             className="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition"
