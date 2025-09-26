@@ -4,6 +4,7 @@ import { AdminRCard } from "./AdminRCard";
 
 export function AddRudraksha() {
   const [reportData, setReportData] = useState({
+    rudrakshaName: "",
     weight: "",
     colour: "",
     shape: "",
@@ -55,6 +56,7 @@ export function AddRudraksha() {
 
       // Reset form
       setReportData({
+        rudrakshaName: "",
         weight: "",
         colour: "",
         shape: "",
